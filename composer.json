@@ -1,5 +1,5 @@
 {
-    "name": "prob/array-key-glue",
+    "name": "jongpak/array-key-glue",
     "description": "Implode keys of array recursively",
     "homepage": "https://github.com/jongpak/array-key-glue",
     "keyword": ["array", "key", "implode", "glue"],
