@@ -1,6 +1,11 @@
 # jongpak/array-key-glue
 Implode keys of array recursively
 
+[![Build Status](https://travis-ci.org/jongpak/array-key-glue.svg?branch=master)](https://travis-ci.org/jongpak/array-key-glue)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jongpak/array-key-glue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jongpak/array-key-glue/?branch=master)
+[![codecov](https://codecov.io/gh/jongpak/array-key-glue/branch/master/graph/badge.svg)](https://codecov.io/gh/jongpak/array-key-glue)
+
+
 ## Simple usage
 ```php
 use Prob\ArrayUtil\KeyGlue;
