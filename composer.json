@@ -1,0 +1,17 @@
+{
+    "name": "prob/array-key-glue",
+    "description": "Implode keys of array recursively",
+    "homepage": "https://github.com/jongpak/array-key-glue",
+    "keyword": ["array", "key", "implode", "glue"],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": { "Prob\\ArrayUtil\\": "src/" }
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+      "phpunit/phpunit": "*"
+    }
+}
