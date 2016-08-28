@@ -7,11 +7,11 @@ use Prob\ArrayUtil\KeyGlue;
 
 $array = [
     'A' => [
-        'B' => true,
-        'C' => 0,
+        'B' => 'Value1',
+        'C' => 'Value2',
         'D' => [
-            'E' => 1,
-            'F' => '2'
+            'E' => 'Value3',
+            'F' => 'Value4'
         ]
     ],
     'G' => [
@@ -23,8 +23,11 @@ $array = [
 
 $glue = new KeyGlue();
 $glue->setArray($array);
+```
 
-$glue->setGlueCharacter('.');
+```php
+$glue->setGlueCharacter('.');   // glue '.'
+$glue->setWithValue(false);     // only key (default)
 $glue->glue();
 /*
  * Array
@@ -38,8 +41,29 @@ $glue->glue();
  *     [6] => G.2
  * )
  */
+```
 
-$glue->setGlueCharacter(' -> ');
+```php
+$glue->setGlueCharacter('.');   // glue '.'
+$glue->setWithValue(true);      // with value
+$glue->glue();
+/*
+ * Array
+ * (
+ *     [A.B]    => 'Value1'
+ *     [A.C]    => 'Value2'
+ *     [A.D.E]  => 'Value3'
+ *     [A.D.F]  => 'Value4'
+ *     [G.0]    => 'H'
+ *     [G.1]    => 'I'
+ *     [G.2]    => 'J'
+ * )
+ */
+```
+
+```php
+$glue->setGlueCharacter(' -> ');    // glue ' -> '
+$glue->setWithValue(false);         // only key (default)
 $glue->glue();
 /*
  * Array
@@ -51,6 +75,24 @@ $glue->glue();
  *     [4] => G -> 0
  *     [5] => G -> 1
  *     [6] => G -> 2
+ * )
+ */
+```
+
+```php
+$glue->setGlueCharacter(' -> ');    // glue ' -> '
+$glue->setWithValue(true);         // with value
+$glue->glue();
+/*
+ * Array
+ * (
+ *     [A -> B]         => 'Value1'
+ *     [A -> C]         => 'Value2'
+ *     [A -> D -> E]    => 'Value3'
+ *     [A -> D -> F]    => 'Value4'
+ *     [G -> 0]         => 'H'
+ *     [G -> 1]         => 'I'
+ *     [G -> 2]         => 'J'
  * )
  */
 ```

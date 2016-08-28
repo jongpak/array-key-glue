@@ -14,6 +14,8 @@ class KeyGlue
     private $array = [];
     private $glueKeys = [];
 
+    private $isWithValue = false;
+
 
     public function setArray(array $array)
     {
@@ -23,6 +25,11 @@ class KeyGlue
     public function setGlueCharacter($glueCharacter)
     {
         $this->glueCharacter = $glueCharacter;
+    }
+
+    public function setWithValue($isWithValue)
+    {
+        $this->isWithValue = $isWithValue;
     }
 
     public function glue()
@@ -43,7 +50,11 @@ class KeyGlue
                 continue;
             }
 
-            $this->glueKeys[] = $curr;
+            if ($this->isWithValue) {
+                $this->glueKeys[$curr] = $value;
+            } else {
+                $this->glueKeys[] = $curr;
+            }
         }
     }
 

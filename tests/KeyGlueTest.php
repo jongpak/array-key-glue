@@ -26,6 +26,26 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
         ], $glue->glue());
     }
 
+    public function testKeyGlue1WithValue()
+    {
+        $glue = new KeyGlue();
+        $glue->setArray($this->getTestArray());
+        $glue->setGlueCharacter('.');
+        $glue->setWithValue(true);
+
+        $this->assertEquals([
+            'a.a' => 'Test1',
+            'a.b' => 'Test2',
+            'a.c.a' => 'Test3',
+            'a.c.b' => 'Test4',
+            'a.c.c.a' => 'Test5',
+            'a.c.c.b.a' => 'Test6',
+            'a.c.c.c.a' => 'Test7',
+            'a.d.a' => 'Test8',
+            'b.a' => 'Test9'
+        ], $glue->glue());
+    }
+
     public function testKeyGlue2()
     {
         $glue = new KeyGlue();
@@ -45,31 +65,51 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
         ], $glue->glue());
     }
 
+    public function testKeyGlue2WithValue()
+    {
+        $glue = new KeyGlue();
+        $glue->setArray($this->getTestArray());
+        $glue->setGlueCharacter(' -> ');
+        $glue->setWithValue(true);
+
+        $this->assertEquals([
+            'a -> a' => 'Test1',
+            'a -> b' => 'Test2',
+            'a -> c -> a' => 'Test3',
+            'a -> c -> b' => 'Test4',
+            'a -> c -> c -> a' => 'Test5',
+            'a -> c -> c -> b -> a' => 'Test6',
+            'a -> c -> c -> c -> a' => 'Test7',
+            'a -> d -> a' => 'Test8',
+            'b -> a' => 'Test9'
+        ], $glue->glue());
+    }
+
     private function getTestArray()
     {
         return [
             'a' => [
-                'a' => '',
-                'b' => '',
+                'a' => 'Test1',
+                'b' => 'Test2',
                 'c' => [
-                    'a' => '',
-                    'b' => '',
+                    'a' => 'Test3',
+                    'b' => 'Test4',
                     'c' => [
-                        'a' => '',
+                        'a' => 'Test5',
                         'b' => [
-                            'a' => ''
+                            'a' => 'Test6'
                         ],
                         'c' => [
-                            'a' => ''
+                            'a' => 'Test7'
                         ]
                     ]
                 ],
                 'd' => [
-                    'a' => ''
+                    'a' => 'Test8'
                 ]
             ],
             'b' => [
-                'a' => ''
+                'a' => 'Test9'
             ]
         ];
     }
