@@ -4,7 +4,6 @@ namespace Prob\ArrayUtil;
 
 class KeyGlue
 {
-
     private $glueCharacter = '.';
 
     /**
@@ -68,6 +67,20 @@ class KeyGlue
 
     private function hasChild($value)
     {
-        return is_array($value) && count($value) > 0;
+        if (is_array($value) === false || $value === []) {
+            return false;
+        }
+
+        return !$this->isNumbericIndexdArray($value);
+    }
+
+    private function isNumbericIndexdArray(array $array)
+    {
+        foreach (array_keys($array) as $k) {
+            if (is_integer($k) === false) {
+                return false;
+            }
+        }
+        return true;
     }
 }

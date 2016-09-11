@@ -6,6 +6,40 @@ use PHPUnit_Framework_TestCase;
 
 class KeyGlueTest extends PHPUnit_Framework_TestCase
 {
+    public function testKeySimple()
+    {
+        $glue = new KeyGlue();
+        $glue->setGlueCharacter('.');
+        $glue->setArray([
+            'a' => ['one', 'two', 'three'],
+            'b' => [
+                'one' => ['hello', 'world']
+            ]
+        ]);
+
+        $this->assertEquals([
+            'a',
+            'b.one'
+        ], $glue->glueOnlyKey());
+    }
+
+    public function testKeySimpleWithValue()
+    {
+        $glue = new KeyGlue();
+        $glue->setGlueCharacter('.');
+        $glue->setArray([
+            'a' => ['one', 'two', 'three'],
+            'b' => [
+                'one' => ['hello', 'world']
+            ]
+        ]);
+
+        $this->assertEquals([
+            'a' => ['one', 'two', 'three'],
+            'b.one' => ['hello', 'world']
+        ], $glue->glueKeyAndContainValue());
+    }
+
     public function testKeyGlue1()
     {
         $glue = new KeyGlue();
@@ -21,7 +55,9 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a.c.c.b.a',
             'a.c.c.c.a',
             'a.d.a',
-            'b.a'
+            'b.a',
+            'b.b',
+            'b.c'
         ], $glue->glueOnlyKey());
     }
 
@@ -40,7 +76,9 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a.c.c.b.a' => 'Test6',
             'a.c.c.c.a' => 'Test7',
             'a.d.a' => 'Test8',
-            'b.a' => 'Test9'
+            'b.a' => 'Test9',
+            'b.b' => [],
+            'b.c' => ['a', 'b', 'c']
         ], $glue->glueKeyAndContainValue());
     }
 
@@ -59,7 +97,9 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a -> c -> c -> b -> a',
             'a -> c -> c -> c -> a',
             'a -> d -> a',
-            'b -> a'
+            'b -> a',
+            'b -> b',
+            'b -> c'
         ], $glue->glueOnlyKey());
     }
 
@@ -78,7 +118,9 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a -> c -> c -> b -> a' => 'Test6',
             'a -> c -> c -> c -> a' => 'Test7',
             'a -> d -> a' => 'Test8',
-            'b -> a' => 'Test9'
+            'b -> a' => 'Test9',
+            'b -> b' => [],
+            'b -> c' => ['a', 'b', 'c']
         ], $glue->glueKeyAndContainValue());
     }
 
@@ -106,7 +148,9 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
                 ]
             ],
             'b' => [
-                'a' => 'Test9'
+                'a' => 'Test9',
+                'b' => [],
+                'c' => ['a', 'b', 'c']
             ]
         ];
     }

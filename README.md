@@ -40,9 +40,7 @@ $glue->glueOnlyKey();
  *     [1] => A.C
  *     [2] => A.D.E
  *     [3] => A.D.F
- *     [4] => G.0
- *     [5] => G.1
- *     [6] => G.2
+ *     [4] => G
  * )
  */
 ```
@@ -57,9 +55,7 @@ $glue->glueKeyAndContainValue();
  *     [A.C]    => 'Value2'
  *     [A.D.E]  => 'Value3'
  *     [A.D.F]  => 'Value4'
- *     [G.0]    => 'H'
- *     [G.1]    => 'I'
- *     [G.2]    => 'J'
+ *     [G]      => ['H', 'I', 'J']
  * )
  */
 ```
@@ -74,9 +70,7 @@ $glue->glueOnlyKey();
  *     [1] => A -> C
  *     [2] => A -> D -> E
  *     [3] => A -> D -> F
- *     [4] => G -> 0
- *     [5] => G -> 1
- *     [6] => G -> 2
+ *     [4] => G
  * )
  */
 ```
@@ -91,9 +85,7 @@ $glue->glueKeyAndContainValue();
  *     [A -> C]         => 'Value2'
  *     [A -> D -> E]    => 'Value3'
  *     [A -> D -> F]    => 'Value4'
- *     [G -> 0]         => 'H'
- *     [G -> 1]         => 'I'
- *     [G -> 2]         => 'J'
+ *     [G]              => ['H', 'I', 'J']
  * )
  */
 ```
