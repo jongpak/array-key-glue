@@ -23,7 +23,7 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a.c.c.c.a',
             'a.d.a',
             'b.a'
-        ], $glue->glue());
+        ], $glue->glueOnlyKey());
     }
 
     public function testKeyGlue1WithValue()
@@ -31,7 +31,6 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
         $glue = new KeyGlue();
         $glue->setArray($this->getTestArray());
         $glue->setGlueCharacter('.');
-        $glue->setWithValue(true);
 
         $this->assertEquals([
             'a.a' => 'Test1',
@@ -43,7 +42,7 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a.c.c.c.a' => 'Test7',
             'a.d.a' => 'Test8',
             'b.a' => 'Test9'
-        ], $glue->glue());
+        ], $glue->glueKeyAndContainValue());
     }
 
     public function testKeyGlue2()
@@ -62,7 +61,7 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a -> c -> c -> c -> a',
             'a -> d -> a',
             'b -> a'
-        ], $glue->glue());
+        ], $glue->glueOnlyKey());
     }
 
     public function testKeyGlue2WithValue()
@@ -70,7 +69,6 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
         $glue = new KeyGlue();
         $glue->setArray($this->getTestArray());
         $glue->setGlueCharacter(' -> ');
-        $glue->setWithValue(true);
 
         $this->assertEquals([
             'a -> a' => 'Test1',
@@ -82,7 +80,7 @@ class KeyGlueTest extends PHPUnit_Framework_TestCase
             'a -> c -> c -> c -> a' => 'Test7',
             'a -> d -> a' => 'Test8',
             'b -> a' => 'Test9'
-        ], $glue->glue());
+        ], $glue->glueKeyAndContainValue());
     }
 
     private function getTestArray()

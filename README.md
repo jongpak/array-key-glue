@@ -32,8 +32,7 @@ $glue->setArray($array);
 
 ```php
 $glue->setGlueCharacter('.');   // glue '.'
-$glue->setWithValue(false);     // only key (default)
-$glue->glue();
+$glue->glueOnlyKey();
 /*
  * Array
  * (
@@ -50,8 +49,7 @@ $glue->glue();
 
 ```php
 $glue->setGlueCharacter('.');   // glue '.'
-$glue->setWithValue(true);      // with value
-$glue->glue();
+$glue->glueKeyAndContainValue();
 /*
  * Array
  * (
@@ -68,8 +66,7 @@ $glue->glue();
 
 ```php
 $glue->setGlueCharacter(' -> ');    // glue ' -> '
-$glue->setWithValue(false);         // only key (default)
-$glue->glue();
+$glue->glueOnlyKey();
 /*
  * Array
  * (
@@ -86,8 +83,7 @@ $glue->glue();
 
 ```php
 $glue->setGlueCharacter(' -> ');    // glue ' -> '
-$glue->setWithValue(true);         // with value
-$glue->glue();
+$glue->glueKeyAndContainValue();
 /*
  * Array
  * (

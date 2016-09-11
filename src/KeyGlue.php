@@ -14,8 +14,6 @@ class KeyGlue
     private $array = [];
     private $glueKeys = [];
 
-    private $isWithValue = false;
-
 
     public function setArray(array $array)
     {
@@ -27,12 +25,7 @@ class KeyGlue
         $this->glueCharacter = $glueCharacter;
     }
 
-    public function setWithValue($isWithValue)
-    {
-        $this->isWithValue = $isWithValue;
-    }
-
-    public function glue()
+    public function glueOnlyKey()
     {
         $this->glueKeys = [];
 
@@ -40,20 +33,28 @@ class KeyGlue
         return $this->glueKeys;
     }
 
-    private function glueLoop(array $array, $prev = '')
+    public function glueKeyAndContainValue()
+    {
+        $this->glueKeys = [];
+
+        $this->glueLoop($this->array, false);
+        return $this->glueKeys;
+    }
+
+    private function glueLoop(array $array, $isContaindOnlyKey = true, $prev = '')
     {
         foreach ($array as $key => $value) {
             $curr = $this->getCurrentGlueName($key, $prev);
 
             if ($this->hasChild($value)) {
-                $this->glueLoop($value, $curr);
+                $this->glueLoop($value, $isContaindOnlyKey, $curr);
                 continue;
             }
 
-            if ($this->isWithValue) {
-                $this->glueKeys[$curr] = $value;
-            } else {
+            if ($isContaindOnlyKey) {
                 $this->glueKeys[] = $curr;
+            } else {
+                $this->glueKeys[$curr] = $value;
             }
         }
     }
