@@ -6,7 +6,6 @@ use PHPUnit_Framework_TestCase;
 
 class KeyGlueTest extends PHPUnit_Framework_TestCase
 {
-
     public function testKeyGlue1()
     {
         $glue = new KeyGlue();
