@@ -66,7 +66,7 @@ class KeyGlue
                 : $key;
     }
 
-    public static function hasChild($value)
+    private function hasChild($value)
     {
         return is_array($value) && count($value) > 0;
     }
